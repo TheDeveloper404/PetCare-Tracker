@@ -1,0 +1,27 @@
+{
+  "identifier" : "D6983CEA-29E9-44AA-883A-F65D965ADABC",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "6.99",
+      "familyShareable" : false,
+      "internalID" : "449EB8D1",
+      "localizations" : [
+        { "description" : "Unlimited pet profiles and PDF exports. Test product only.", "displayName" : "Pet Care Premium Lifetime", "locale" : "en_US" }
+      ],
+      "productID" : "petcaretracker.test.premium.lifetime",
+      "referenceName" : "Lifetime Premium — local testing only",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "0",
+    "_developerTeamID" : "",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 3, "minor" : 0 }
+}
