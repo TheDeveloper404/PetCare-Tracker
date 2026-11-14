@@ -15,7 +15,11 @@ import XCTest
         app.buttons["addPet"].tap()
         let field = app.textFields["petName"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
-        field.tap(); field.typeText(name)
+        field.tap()
+        // Slow CI simulators can drop a tap made while the editor sheet is still presenting.
+        let focused = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hasKeyboardFocus == true"), object: field)
+        if XCTWaiter.wait(for: [focused], timeout: 5) != .completed { field.tap() }
+        field.typeText(name)
         let save = app.buttons["savePet"]
         XCTAssertTrue(save.waitForExistence(timeout: 5))
         save.tap()
@@ -265,6 +269,8 @@ import XCTest
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Import backup"].tap()
         let file = app.cells.matching(NSPredicate(format: "identifier BEGINSWITH %@", exportedName)).firstMatch
+        // Slow CI simulators can drop the tap; the button stays hittable only while the picker is not shown.
+        if !file.waitForExistence(timeout: 5), app.buttons["Import backup"].isHittable { app.buttons["Import backup"].tap() }
         XCTAssertTrue(file.waitForExistence(timeout: 15), "Missing exported file \(exportedName)\n" + app.debugDescription)
         file.tap()
         let confirm = app.popovers.buttons["Import backup"]
